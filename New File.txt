@@ -1,1 +1,2 @@
 New File
+1. stage상태테스트
