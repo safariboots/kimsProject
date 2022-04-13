@@ -1,2 +1,3 @@
 New File
 1. stage상태테스트
+2. Github에서 수정하기
