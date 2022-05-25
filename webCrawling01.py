@@ -31,6 +31,9 @@ find_str = soup.find('div', attrs={'container_inner clear_g'})    # 가져올 di
 # print(find_str)
 file = open("./saveJsonTest.json", "w", encoding='UTF-8')   # json 생성
 
+mnet_dict = {}
+page = 0
+
 for info in find_str.find_all('div', attrs={'class':'box_type1 qna_main'}): # div 부분 핵심 내용 탐색
     temp_dict = {}
   
@@ -40,9 +43,12 @@ for info in find_str.find_all('div', attrs={'class':'box_type1 qna_main'}): # di
     # print(title + ' ok')
     # print(nUrl + ' ok')
     # print(contents + ' end' + '\n')
-    temp_dict= {'title': title, 'nUrl': nUrl, 'contents': contents}    # json형태로 저장하기
+    temp_dict[str(page)] = {'title': title, 'nUrl': nUrl, 'contents': contents} # json형태로 저장하기
+    mnet_dict = dict(mnet_dict, **temp_dict)
     
-    file.write(json.dumps(temp_dict,ensure_ascii=False,indent='\t'))    # json파일 만들기
-    #print(temp_dict)
 
+    page += 1
+    
+    #print(temp_dict)
+file.write(json.dumps(mnet_dict,ensure_ascii=False,indent='\t'))    # json파일 만들기
 file.close()    # 파일 닫기
