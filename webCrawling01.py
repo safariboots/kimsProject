@@ -34,14 +34,15 @@ file = open("./saveJsonTest.json", "w", encoding='UTF-8')   # json 생성
 for info in find_str.find_all('div', attrs={'class':'box_type1 qna_main'}): # div 부분 핵심 내용 탐색
     temp_dict = {}
   
-    title = info.find("strong").text
-    nUrl = url + str(info.find("div", attrs={'class':'cont'}).a['href']).strip()
-    contents = info.find('p', attrs={'class': 'desc'}).text
+    title = info.find("strong").text    # 제목가져오기
+    nUrl = url + str(info.find("div", attrs={'class':'cont'}).a['href']).strip()    # 공백문자처리후 url가져오기
+    contents = info.find('p', attrs={'class': 'desc'}).text     # 내용가져오기
     # print(title + ' ok')
     # print(nUrl + ' ok')
     # print(contents + ' end' + '\n')
-    temp_dict = {'title': title, 'nUrl': nUrl, 'contents': contents}
-    file.write(json.dumps(temp_dict,ensure_ascii=False,indent='\t'))
-    # print(temp_dict)
+    temp_dict= {'title': title, 'nUrl': nUrl, 'contents': contents}    # json형태로 저장하기
+    
+    file.write(json.dumps(temp_dict,ensure_ascii=False,indent='\t'))    # json파일 만들기
+    #print(temp_dict)
 
-file.close()
+file.close()    # 파일 닫기
