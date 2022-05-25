@@ -45,8 +45,3 @@ for info in find_str.find_all('div', attrs={'class':'box_type1 qna_main'}): # di
     # print(temp_dict)
 
 file.close()
-
-with open("./saveJsonTest.json",'r', encoding='UTF8') as f:
-  data = json.load(f,strict=False)
-
-print(data)
