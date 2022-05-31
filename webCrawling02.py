@@ -29,15 +29,15 @@ print(tempList_nUrl)   # 게시판 페이지별 url목록 배열 출력
 
 for contentsAddr in tempList_nUrl:    # 컨텐츠 페이지 주소 (coontentsAddr)
     print(contentsAddr)
-    reques = requests.get(contentsAddr, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기
+    request = requests.get(contentsAddr, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기
     soup = BeautifulSoup(request.text, features="html.parser")   # html 파싱
     request.close()
 
-    # find_str = soup.find('div', attrs={'view_answer'})
-    # print(soup)
+    find_str = soup.find('div', attrs={'view_answer'})
+    # print(find_str)
 
-    # contents = info.find('strong', attrs={'class': 'tit'}).text
-    # print(contents)
+    contents = soup.find('strong', attrs={'class': 'tit'}).text
+    print(contents)
 
 
 # request = requests.get(contentsAddr, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기

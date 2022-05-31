@@ -1,3 +1,4 @@
+from email.policy import strict
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -8,14 +9,17 @@ import json
 
 
 
-url = "https://www.hidoc.co.kr/healthqna/view/C0000703322"
+url = "https://www.hidoc.co.kr/healthqna/view/C0000703070"
 
 request = requests.get(url,headers={"User-Agent": "Mozilla/5.0"})
 
 soup = BeautifulSoup(request.content, features="html.parser")
-# request.close()
+request.close()
+print(soup.find('strong', attrs={'class': 'tit'}).text)
 
-print('soup')
+
+
+
 
 
 # find_str = soup.find('div', attrs={'list_section-slider-row-block'})
