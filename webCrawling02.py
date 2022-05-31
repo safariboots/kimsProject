@@ -34,8 +34,8 @@ for contentsAddr in tempList_nUrl:    # 컨텐츠 페이지 주소 (coontentsAdd
     request.close()
 
     # find_str = soup.find('div', attrs={'view_answer'})
-    print(soup)
-    
+    # print(soup)
+
     # contents = info.find('strong', attrs={'class': 'tit'}).text
     # print(contents)
 
