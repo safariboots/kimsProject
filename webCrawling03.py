@@ -22,7 +22,7 @@ for i in range(1,360):
     file = open(fileName, "w", encoding='UTF-8')   # json 생성
 
         
-    for page in range(1,500):             #페이지 갯수 설정 시작~끝-1
+    for page in range(startNo,endNo):             #페이지 갯수 설정 시작~끝-1
         crawlingUrl=boardUrl+str(page)    # 실제가져올 게시물 페이지 url
         request = requests.get(crawlingUrl, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기
         soup = BeautifulSoup(request.content, features="html.parser")   # html 파싱
