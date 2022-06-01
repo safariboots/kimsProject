@@ -14,11 +14,12 @@ file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url
 startNo = 1
 endNo = 101
-for i in range(1,360):
-    tempList_nUrl=[]    # 게시판 각 페이지의 url목록 배열생성
-    fileNo=0        # jsonFile번호
-    fileName = 'qnahidoc' + str(fileNo) + '.json'
+fileNo=0            # jsonFile번호
 
+for i in range(1,360):
+    tempList_nUrl=[]    # 게시판 각 페이지의 url목록 배열생성    
+    
+    fileName = 'qnahidoc' + str(fileNo) + '.json'
     file = open(fileName, "w", encoding='UTF-8')   # json 생성
 
         
@@ -109,5 +110,6 @@ for i in range(1,360):
     time.sleep( random.uniform(1,2) )   # 랜덤한 시간으로  쉬어줘
     # print('질문 갯수: ', count_question, '\n') # 확인 - 질문갯수
     ############################################################################
+    fileNo += 1             # jsonFile번호 증가
     startNo = startNo + 100       # 게시물 번호 시작 1, 101, 201, 301, 401,....
     endNo = endNo + 100           # 게시물 번호 끝   101, 201, 301, 401,...
