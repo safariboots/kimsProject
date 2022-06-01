@@ -8,7 +8,7 @@ import random
 url = "https://www.hidoc.co.kr/"
 boardUrl = 'https://www.hidoc.co.kr/healthqna/list?page='   # 게시물 리스트
 contentsUrl = 'https://www.hidoc.co.kr/healthqna/'   # 실제 내용이 있는 주소
-no = 1  # 게시물 번호
+# no = 1  # 게시물 번호
 file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url
