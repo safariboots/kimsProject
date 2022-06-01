@@ -14,7 +14,7 @@ file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url
 startNo = 1
 endNo = 101
-for i in range(1,100):
+for i in range(1,360):
     tempList_nUrl=[]    # 게시판 각 페이지의 url목록 배열생성
     fileNo=0        # jsonFile번호
     fileName = 'qnahidoc' + str(fileNo) + '.json'
