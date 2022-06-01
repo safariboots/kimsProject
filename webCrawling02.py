@@ -99,10 +99,9 @@ for contentsAddr in tempList_nUrl:    # 컨텐츠 페이지 주소 (coontentsAdd
     # print(temp_dict)        # temp_dict 내용 확인
     contentsTojson = dict(contentsTojson, **temp_dict)  # json 목록 생성 
     count_question += 1     # 확인 - 질문 갯수 카운트 증가 
-    
+
     time.sleep( random.uniform(1,2) )   # 랜덤한 시간으로  쉬어줘
-    
-  
+      
 file.write(json.dumps(contentsTojson,ensure_ascii=False,indent='\t'))    # json파일 만들기
 file.close()    # 파일 닫기
 # print('질문 갯수: ', count_question, '\n') # 확인 - 질문갯수
