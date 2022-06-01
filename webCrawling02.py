@@ -14,16 +14,16 @@ file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url
 
 tempList_nUrl=[]    # 게시판 각 페이지의 url목록 배열생성
-for page in range(1,100):             #페이지 갯수 설정 시작~끝-1
+for page in range(1,3000):             #페이지 갯수 설정 시작~끝-1
     crawlingUrl=boardUrl+str(page)    # 실제가져올 게시물 페이지 url
     request = requests.get(crawlingUrl, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기
     soup = BeautifulSoup(request.content, features="html.parser")   # html 파싱
     request.close()
     
     #### 상태체크 ####
-    if request.status_code!=200:
-        print('좆됐다')
-    print(request.status_code)
+    # if request.status_code!=200:
+    #     print('좆됐다')
+    # print(request.status_code)
     ##################
     
     #### 100페이지 마다 쉬어줘 ######
