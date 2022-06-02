@@ -12,11 +12,11 @@ contentsUrl = 'https://www.hidoc.co.kr/healthqna/'   # 실제 내용이 있는 �
 file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url
-startNo = 1
-endNo = 101
-fileNo=0            # jsonFile번호
+startNo = 101         # 게시물 번호 시작 1
+endNo = 201         # 게시물 번호 끝 101
+fileNo=1            # jsonFile번호 시작 0
 
-for i in range(1,360):
+for i in range(0,360):      # 게시물 크롤링 횟수 시작 0
     tempList_nUrl=[]    # 게시판 각 페이지의 url목록 배열생성    
     
     fileName = 'qnahidoc' + str(fileNo) + '.json'
@@ -37,9 +37,9 @@ for i in range(1,360):
         ##################
         
         #### 100페이지 마다 쉬어줘 ######
-        if page%10 == 0:
-            time.sleep( random.uniform(1,2) )   # 랜덤한 시간으로  쉬어줘
-            print('지금', page,'여\n')
+        # if page%10 == 0:
+        #     time.sleep( random.uniform(1,2) )   # 랜덤한 시간으로  쉬어줘
+        #     print('지금', page,'여\n')
         ################################
         
         find_str = soup.find('div', attrs={'container_inner clear_g'})    # 가져올 div 전체 내용 부분 탐색
@@ -107,7 +107,8 @@ for i in range(1,360):
     
     file.write(json.dumps(contentsTojson,ensure_ascii=False,indent='\t'))    # json파일 만들기
     file.close()    # 파일 닫기
-    time.sleep( random.uniform(1,2) )   # 랜덤한 시간으로  쉬어줘
+    # time.sleep( random.uniform(1,2) )   # 랜덤한 시간으로  쉬어줘
+    time.sleep(10)      # 10초 휴식
     # print('질문 갯수: ', count_question, '\n') # 확인 - 질문갯수
     ############################################################################
     fileNo += 1             # jsonFile번호 증가
