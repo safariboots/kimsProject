@@ -11,12 +11,14 @@ contentsUrl = 'https://www.hidoc.co.kr/healthqna/'   # 실제 내용이 있는 �
 # no = 1  # 게시물 번호
 file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 
-# crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url
+#### 자꾸 끊어지니 게시물 100페이지 씩 크롤링, 100x7 게시물을 한파일에 저장 #####
+# crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url, 처음 시작과 끝 url간격 설정(100), 파일 페이지 시작 설정
 startNo = 5701         # 게시물 번호 시작 1, 101..
 endNo = 5801         # 게시물 번호 끝 101, 201,..
 fileNo = 57            # jsonFile번호 시작 0, 1..
+#############################################################################
 
-for i in range(0,360):      # 게시물 크롤링 횟수 시작 0
+for i in range(0,300):      # 게시물 크롤링 횟수 시작 0 , 게시판 번호 약 36500
     tempList_nUrl=[]    # 게시판 각 페이지의 url목록 배열생성    
     
     fileName = 'qnahidoc' + str(fileNo) + '.json'
