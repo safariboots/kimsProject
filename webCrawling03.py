@@ -29,6 +29,7 @@ for i in range(0,360):      # 게시물 크롤링 횟수 시작 0
         soup = BeautifulSoup(request.content, features="html.parser")   # html 파싱
         request.close()
         
+        print('처리중', page,'가져옴\n')    # 확인 - 게시물페이지 처리 확인
         
         #### 상태체크 ####
         # if request.status_code!=200:
