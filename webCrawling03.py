@@ -12,9 +12,9 @@ contentsUrl = 'https://www.hidoc.co.kr/healthqna/'   # 실제 내용이 있는 �
 file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url
-startNo = 3601         # 게시물 번호 시작 1, 101..
-endNo = 3701         # 게시물 번호 끝 101, 201,..
-fileNo = 36            # jsonFile번호 시작 0, 1..
+startNo = 5701         # 게시물 번호 시작 1, 101..
+endNo = 5801         # 게시물 번호 끝 101, 201,..
+fileNo = 57            # jsonFile번호 시작 0, 1..
 
 for i in range(0,360):      # 게시물 크롤링 횟수 시작 0
     tempList_nUrl=[]    # 게시판 각 페이지의 url목록 배열생성    
@@ -108,7 +108,10 @@ for i in range(0,360):      # 게시물 크롤링 횟수 시작 0
     
     file.write(json.dumps(contentsTojson,ensure_ascii=False,indent='\t'))    # json파일 만들기
     file.close()    # 파일 닫기
+    
+    print('좀 쉴께요 \n')   # 확인 - 쉬는지 확인
     time.sleep( random.uniform(5,10) )   # 랜덤한 시간으로  쉬어줘.. 최소 10초-20초 정도가 안걸림
+    
     # time.sleep(20)      # 20초 휴식
     # print('질문 갯수: ', count_question, '\n') # 확인 - 질문갯수
     ############################################################################
