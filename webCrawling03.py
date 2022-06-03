@@ -2,7 +2,7 @@ from email.policy import strict
 import requests
 from bs4 import BeautifulSoup
 import json
-import timei
+import time
 import random
 
 url = "https://www.hidoc.co.kr/"
