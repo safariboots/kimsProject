@@ -124,5 +124,5 @@ for i in range(1,300):      # 게시물 크롤링 횟수 시작 0 , 게시판 �
     print('지금', i,'번째\n')
     if i%9==1:
         print('그만 부려먹어라.. 좀 쉬어야함..\n')
-        time.sleep( random.uniform(180,300))  # 3분에서 5분 랜덤하게 쉬어가기
+        time.sleep( random.uniform(300,500))  # 5분 이상 랜덤하게 쉬어가기
         
