@@ -5,7 +5,8 @@ import json
 import time
 import random
 
-url = "https://www.hidoc.co.kr/"
+# url = "https://www.hidoc.co.kr/"
+# hidoc의 boardUrl의 게시물으로부터 질문답변 컨텐츠 주소를 획득한 후, 그 주소의 해당컨텐츠를 획득함.
 boardUrl = 'https://www.hidoc.co.kr/healthqna/list?page='   # 게시물 리스트
 contentsUrl = 'https://www.hidoc.co.kr/healthqna/'   # 실제 내용이 있는 주소
 # no = 1  # 게시물 번호
@@ -128,7 +129,7 @@ for i in range(1,366):      # 게시물 크롤링 횟수 시작 0 , 게시판 �
     endNo = endNo + 100           # 게시물 번호 끝   101, 201, 301, 401,...
     
     print('지금', i,'번째\n')
-    # if i%8==0:
-    #     print('그만 부려먹어라.. 좀 쉬어야함..\n')
-    #     time.sleep( random.uniform(500,600))  # 8분 이상 10분이하 랜덤하게 쉬어가기
+    if i%10==0:
+        print('그만 부려먹어라.. 좀 쉬어야함..\n')
+        time.sleep( random.uniform(900,1200))  # 15분 이상 20분이하 랜덤하게 쉬어가기
         
