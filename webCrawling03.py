@@ -78,34 +78,40 @@ for i in range(1,300):      # 게시물 크롤링 횟수 시작 0 , 게시판 �
         request = requests.get(contentsAddr, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기
         soup = BeautifulSoup(request.text, features="html.parser")   # html 파싱
         request.close()
-        print(contentsAddr, '\n')   # 해당 주소 확인
-        qTitle = soup.find('strong', attrs={'class': 'tit'}).text # 컨텐츠 목록내용 가져오기 - 질문 제목
-        qDate = soup.find('span', attrs={'class': 'txt_time'}).text # 컨텐츠 목록내용 가져오기 - 질문 날짜
         
-        ### 컨텐츠 목록내용 가져오기 - 질문내용 ###
-        tag_div = soup.find('div', attrs={'class': 'box_type1 view_question'})  # 해당 위치의 div 탐색
-        qContents = tag_div.find('div', attrs={'class': 'inner'}).p.text    # 탐색된 div 내용중 p 안의 내용 저장
-        # print(contentsAddr, '\n', qDate, '\n', qTitle, '\n', qContents, '\n')  # 확인 - 주소,날짜,제목,내용    
-    
+        # print(contentsAddr, '\n')   # 확인 - 현재 해당 주소 확인
+        
+        try:
+            qTitle = soup.find('strong', attrs={'class': 'tit'}).text # 컨텐츠 목록내용 가져오기 - 질문 제목
+            qDate = soup.find('span', attrs={'class': 'txt_time'}).text # 컨텐츠 목록내용 가져오기 - 질문 날짜
             
-        ### 답변 내용 탐색 및 저장 ###
-        tag_search  = soup.find('div', attrs={'view_answer'})  # 컨텐츠 목록내용 가져오기 - 답변 내용 전체 가져오기
+            ### 컨텐츠 목록내용 가져오기 - 질문내용 ###
+            tag_div = soup.find('div', attrs={'class': 'box_type1 view_question'})  # 해당 위치의 div 탐색
+            qContents = tag_div.find('div', attrs={'class': 'inner'}).p.text    # 탐색된 div 내용중 p 안의 내용 저장
+            # print(contentsAddr, '\n', qDate, '\n', qTitle, '\n', qContents, '\n')  # 확인 - 주소,날짜,제목,내용    
         
-        check_answerCount=1     # 답변번호 카운트
-        answerList=[]       # 답변목록 배열 생성
-        for news in tag_search.find_all('div', attrs={'desc'}):
-            check_null = news.text      # 답변내용 임시 저장공간 생성
-            if check_null != '\n':      # 내용이 있는지 확인
-                # print('Thank you!! \n')    # 확인 - 개행문자 유무 확인
-                # print('Answer_', check_answerCount,': ', news.text,'\n----------------------------\n\n') # 확인 - 답변 갯수
-                answerDoc = 'Answer'+ str(check_answerCount) + "-" + news.text  # 답변 정형화
-                answerList.append(answerDoc)    # 답변 목록에 추가
-                check_answerCount += 1      # 답변 번호 증가
+                
+            ### 답변 내용 탐색 및 저장 ###
+            tag_search  = soup.find('div', attrs={'view_answer'})  # 컨텐츠 목록내용 가져오기 - 답변 내용 전체 가져오기
+            
+            check_answerCount=1     # 답변번호 카운트
+            answerList=[]       # 답변목록 배열 생성
+            for news in tag_search.find_all('div', attrs={'desc'}):
+                check_null = news.text      # 답변내용 임시 저장공간 생성
+                if check_null != '\n':      # 내용이 있는지 확인
+                    # print('Thank you!! \n')    # 확인 - 개행문자 유무 확인
+                    # print('Answer_', check_answerCount,': ', news.text,'\n----------------------------\n\n') # 확인 - 답변 갯수
+                    answerDoc = 'Answer'+ str(check_answerCount) + "-" + news.text  # 답변 정형화
+                    answerList.append(answerDoc)    # 답변 목록에 추가
+                    check_answerCount += 1      # 답변 번호 증가
 
-        temp_dict[str(count_question)] = {'title': qTitle, 'Url': contentsAddr, 'date': qDate, 'question': qContents, 'answer': answerList} # json 형태로 임시 저장
-        # print(temp_dict)        # temp_dict 내용 확인
-        contentsTojson = dict(contentsTojson, **temp_dict)  # json 목록 생성 
-        count_question += 1     # 확인 - 질문 갯수 카운트 증가 
+            temp_dict[str(count_question)] = {'title': qTitle, 'Url': contentsAddr, 'date': qDate, 'question': qContents, 'answer': answerList} # json 형태로 임시 저장
+            # print(temp_dict)        # temp_dict 내용 확인
+            contentsTojson = dict(contentsTojson, **temp_dict)  # json 목록 생성 
+            count_question += 1     # 확인 - 질문 갯수 카운트 증가 
+        except :
+            errUrl = nUrl
+            print(errUrl, '페이지에러발생 \n')
         
     
     file.write(json.dumps(contentsTojson,ensure_ascii=False,indent='\t'))    # json파일 만들기
