@@ -14,9 +14,9 @@ file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 
 #### 자꾸 끊어지니 게시물 100페이지 씩 크롤링, 100x7 게시물을 한파일에 저장 #####
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url, 처음 시작과 끝 url간격 설정(100), 파일 페이지 시작 설정
-startNo = 20301         # 게시물 번호 시작 1, 101..
-endNo = 20401         # 게시물 번호 끝 101, 201,..
-fileNo = 203            # jsonFile번호 시작 0, 1..
+startNo = 22001         # 게시물 번호 시작 1, 101..
+endNo = 22101         # 게시물 번호 끝 101, 201,..
+fileNo = 220            # jsonFile번호 시작 0, 1..
 #############################################################################
 
 for i in range(1,366):      # 게시물 크롤링 횟수 시작 0 , 게시판 번호 약 36500 x 7 = 약 25만 페이지
@@ -73,7 +73,7 @@ for i in range(1,366):      # 게시물 크롤링 횟수 시작 0 , 게시판 �
     count_question = 0           # 확인 - 질문 갯수 확인
     for contentsAddr in tempList_nUrl:    # 컨텐츠 페이지 주소 (coontentsAddr) # ID로 활용 
         temp_dict = {}  # 임시 딕셔너리 생성
-        print(count_question, '....컨텐츠 페이지 처리중\n')
+        print(count_question, '....컨텐츠 페이지 처리중\n')     # 멈춤효과가 좀 더 있음(for문에서 한번씩 쉬어주는효과?)
         
         
         request = requests.get(contentsAddr, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기
