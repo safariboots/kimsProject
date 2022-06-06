@@ -80,7 +80,7 @@ for i in range(1,366):      # 게시물 크롤링 횟수 시작 0 , 게시판 �
         soup = BeautifulSoup(request.text, features="html.parser")   # html 파싱
         request.close()
         
-        # print(contentsAddr, '\n')   # 확인 - 현재 해당 주소 확인
+        print(contentsAddr, '\n')   # 확인 - 현재 해당 주소 확인
         
         try:
             qTitle = soup.find('strong', attrs={'class': 'tit'}).text # 컨텐츠 목록내용 가져오기 - 질문 제목
