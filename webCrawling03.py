@@ -14,12 +14,12 @@ file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
 
 #### 자꾸 끊어지니 게시물 100페이지 씩 크롤링, 100x7 게시물을 한파일에 저장 #####
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url, 처음 시작과 끝 url간격 설정(100), 파일 페이지 시작 설정
-startNo = 35801         # 게시물 번호 시작 1, 101..
-endNo = 35901         # 게시물 번호 끝 101, 201,..
-fileNo = 358            # jsonFile번호 시작 0, 1..
+startNo = 1         # 게시물 번호 시작 1, 101..
+endNo = 101         # 게시물 번호 끝 101, 201,..
+fileNo = 368            # jsonFile번호 시작 0, 1..
 #############################################################################
 
-for i in range(1,366):      # 게시물 크롤링 횟수 시작 0 , 게시판 번호 약 36500 x 7 = 약 25만 페이지
+for i in range(1,366):      # 게시물 크롤링 횟수 시작 0 , 게시판 번호 약 36738 x 7 = 약 25만 페이지
     tempList_nUrl=[]    # 게시판 각 페이지의 url목록 배열생성    
     
     fileName = 'qnahidoc' + str(fileNo) + '.json'
