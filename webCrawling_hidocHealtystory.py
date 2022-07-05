@@ -5,7 +5,8 @@ import json
 import time
 import random
 
-boardUrl = 'https://www.hidoc.co.kr/healthstory/news?page='   # 게시물 리스트
+boardUrl = 'https://www.hidoc.co.kr/healthstory/news?mIdx=0&page='   # 게시물 리스트
+boardUrl_tail = '1&sIdx=1140'
 contentsUrl = 'https://www.hidoc.co.kr'   # 실제 내용이 있는 주소
 
 # file = open("./qnaHidoc.json", "w", encoding='UTF-8')   # json 생성
@@ -25,7 +26,7 @@ for i in range(0,1):      # 게시물 크롤링 횟수 시작 0 , 게시판 번�
 
         
     for page in range(startNo,endNo):             #페이지 갯수 설정 시작~끝-1
-        crawlingUrl=boardUrl+str(page)    # 실제가져올 게시물 페이지 url
+        crawlingUrl=boardUrl+str(page)+boardUrl_tail    # 실제가져올 게시물 페이지 url
         request = requests.get(crawlingUrl, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기
         soup = BeautifulSoup(request.content, features="html.parser")   # html 파싱
         request.close()
