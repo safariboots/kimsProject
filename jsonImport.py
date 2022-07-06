@@ -3,6 +3,8 @@ import pprint as ppr
 import json
 
 es = Elasticsearch("http://192.168.5.133:9200")   # 객체 생성
+
+
 def srvHealthCheck():
         health = es.cluster.health()
         print (health)
@@ -68,7 +70,7 @@ def dataInsert():
 	#대용량 Json 파일 데이터 삽입
 	#===================
 	
-	with open("/home/kobic/tmp/ex.json","r",encoding="utf-8") as fjson:
+	with open("./ex.json","r",encoding="utf-8") as fjson:
 		data = json.loads(fjson.read())
 		#print(data)
 		for n, i in enumerate(data):
