@@ -14,8 +14,8 @@ contentsUrl = 'https://www.hidoc.co.kr'   # 실제 내용이 있는 주소
 #### 자꾸 끊어지니 게시물 100페이지 씩 크롤링, 100x7 게시물을 한파일에 저장 #####
 # crawlingUrl=boardUrl+str(no)    # 실제가져올 게시물 페이지 url, 처음 시작과 끝 url간격 설정(100), 파일 페이지 시작 설정
 startNo = 1         # 게시물 번호 시작 1, 101..
-endNo = 35         # 게시물 번호 끝 101, 201,..
-fileNo = 1            # jsonFile번호 시작 0, 1..
+endNo = 4         # 게시물 번호 끝 101, 201,..
+fileNo = 2            # jsonFile번호 시작 0, 1..
 #############################################################################
 
 for i in range(0,1):      # 게시물 크롤링 횟수 시작 0 , 게시판 번호 약 36738 x 7 = 약 25만 페이지
@@ -77,14 +77,14 @@ for i in range(0,1):      # 게시물 크롤링 횟수 시작 0 , 게시판 번�
 
     for contentsAddr in tempList_nUrl:    # 컨텐츠 페이지 주소 (coontentsAddr) # ID로 활용 
         temp_dict = {}  # 임시 딕셔너리 생성
-        print(count_newsContents, '....컨텐츠 페이지 처리중\n')     # 멈춤효과가 좀 더 있음(for문에서 한번씩 쉬어주는효과?)
+        # print(count_newsContents, '....컨텐츠 페이지 처리중\n')     # 멈춤효과가 좀 더 있음(for문에서 한번씩 쉬어주는효과?)
         
         
         request = requests.get(contentsAddr, headers={"User-Agent": "Mozilla/5.0"}) # 게시물 페이지 내용 가져오기
         soup = BeautifulSoup(request.text, features="html.parser")   # html 파싱
         request.close()
         
-        print('현재 처리중인 주소 : ', contentsAddr, '\n')   # 확인 - 현재 해당 주소 확인
+        # print('현재 처리중인 주소 : ', contentsAddr, '\n')   # 확인 - 현재 해당 주소 확인
         # print(soup)
         
         try:
@@ -110,7 +110,7 @@ for i in range(0,1):      # 게시물 크롤링 횟수 시작 0 , 게시판 번�
                     # check_answerCount += 1      # 답변 번호 증가
 
 
-            temp_dict[str(count_newsContents)] = {'title': nTitle, 'Url': contentsAddr, 'date': nDate, 'answer': newsContentsList} # json 형태로 임시 저장
+            temp_dict[count_newsContents] = {'title': nTitle, 'Url': contentsAddr, 'date': nDate, 'answer': newsContentsList} # json 형태로 임시 저장
             # print(temp_dict)        # temp_dict 내용 확인
             contentsTojson = dict(contentsTojson, **temp_dict)  # json 목록 생성
             count_newsContents += 1     # 확인 - 질문 갯수 카운트 증가
