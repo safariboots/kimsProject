@@ -1,16 +1,15 @@
+from datetime import datetime
 from elasticsearch import Elasticsearch
+import pprint as ppr
+import json
 
-
-es = Elasticsearch("http://192.168.5.135:9200")
-
-# es = Elasticsearch(f'http://192.168.0.135:9200')
-
-
-# es.info()
+# es = Elasticsearch("http://192.168.5.135:9200/")   # 객체 생성
+es = Elasticsearch('http://211.188.65.224:9200/')
+print(es)
 
 def srvHealthCheck():
-	health = es.cluster.health()
-	print(health)
+        health = es.cluster.health()
+        print (health)
 
 
 def createIndex():
@@ -64,6 +63,6 @@ def createIndex():
 				}
 			}
 	)
-print("start ..............\n")
+
 srvHealthCheck()
 # createIndex()
