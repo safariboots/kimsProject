@@ -1,9 +1,10 @@
 from elasticsearch import Elasticsearch
 
 
-es = Elasticsearch("http://192.168.5.133:9200")
+es = Elasticsearch("http://192.168.5.135:9200")
 
 def srvHealthCheck():
+    print(hello)
 	health = es.cluster.health()
 	print(health)
 
@@ -11,7 +12,7 @@ def srvHealthCheck():
 def createIndex():
 	#인덱스 생성
 	es.indices.create(
-	 	index = "kogundata",
+	 	index = "_medihook_test1",
 		body = {
 			"settings": {
 				"number_of_shards": 3
@@ -34,9 +35,31 @@ def createIndex():
 						},
 					"content": {"type": "text"}
 					}
+				},
+			"analysis": {
+					"tokenizer": {
+						"nori_none": {
+							"type": "nori_tokenizer",
+							"decompound_mode": "none"
+						},
+						"nori_discard": {
+							"type": "nori_tokenizer",
+							"decompound_mode": "discard"
+						},
+						"nori_mixed": {
+							"type": "nori_tokenizer",
+							"decompound_mode": "mixed"
+						}
+					},
+					"analyzer": {
+						"korean": {
+							"type": "nori",
+							#"stopwords": "_korean_"
+						}
+					}
 				}
 			}
 	)
 
 srvHealthCheck()
-createIndex()
+#createIndex()
