@@ -1,12 +1,12 @@
 from elasticsearch import Elasticsearch
 
 
-es = Elasticsearch('http://192.168.5.135:9200')
+es = Elasticsearch("http://192.168.5.135:9200")
 
 # es = Elasticsearch(f'http://192.168.0.135:9200')
 
 
-es.info()
+# es.info()
 
 def srvHealthCheck():
 	health = es.cluster.health()
@@ -65,5 +65,5 @@ def createIndex():
 			}
 	)
 print("start ..............\n")
-# srvHealthCheck()
+srvHealthCheck()
 # createIndex()
