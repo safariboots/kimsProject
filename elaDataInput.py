@@ -2,8 +2,8 @@ from elasticsearch import Elasticsearch
 import json
 from datetime import datetime
 
-es = Elasticsearch("http://192.168.5.135:9200")
-# es = Elasticsearch('http://211.188.65.224:9200/')
+# es = Elasticsearch("http://192.168.5.135:9200")
+es = Elasticsearch('http://211.188.65.224:9200')
 # print(es)
 
 n=0
@@ -20,7 +20,7 @@ for fileNo in range(0,369):
     data = json.load(file,strict=False)	# 정상
 
 
-    for i in range(0, 699):
+    for i in range(0, 700):
     # for i in range(0, 10):
         try:            
             time_result = datetime.strptime(data[str(i)]["date"], "%Y.%m.%d").strftime('%Y-%m-%d')
@@ -33,7 +33,7 @@ for fileNo in range(0,369):
                 "answer" : data[str(i)]["answer"]
                 }
             print("doc:", doc)
-            res = es.index(index="medihook_test1", doc_type="_doc", id=n+1, body=doc)
+            res = es.index(index="medihook", doc_type="_doc", id=n+1, body=doc)
             print(res)
             n=n+1
             
