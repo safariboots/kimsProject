@@ -6,12 +6,12 @@ from datetime import datetime
 es = Elasticsearch('http://211.188.65.224:9200')
 # print(es)
 
-#### 285236 ~  까지
+#### 285236 ~ 285571까지
 n=285235                # 엘라스틱 서치에서 입력 총 갯 수 확인 후 설정 현재는  '258050' 이므로 이 갯수에서 시작
-fileName='./hidocNews'  # 파일명
+fileName='./hidocHealtystory'  # 파일명
 fileEx='.json'          # 확장자
 
-for fileNo in range(0,28):     # 파일 갯수 +1     # 증가하는 파일명
+for fileNo in range(1,2):     # 파일 갯수 +1     # 증가하는 파일명
 # for fileNo in range(0,1):     # 테스트
     fullName = fileName + str(fileNo) + fileEx    
     print(fullName)
@@ -20,7 +20,7 @@ for fileNo in range(0,28):     # 파일 갯수 +1     # 증가하는 파일명
     data = json.load(file,strict=False)	# 정상
 
 
-    for i in range(0, 1000):     # 파일내 컨텐츠 갯수 0 ~ 999까지
+    for i in range(0, 336):     # 파일내 컨텐츠 갯수 0 ~ 335까지
     # for i in range(0, 10):    # 테스트  컨텐츠 10개만 출력
         
         try:            
