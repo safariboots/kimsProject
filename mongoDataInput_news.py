@@ -26,12 +26,13 @@ colletion = client['medihook']
 
 
 ######################### Json File Data Input #################
-n=0
-fileName='./qnahidoc'
-fileEx='.json'
+#################### n초기값 수정 -> id 258051 ~ id 285235 까지 ######################
+n=258051
+fileName='./hidocNews'  # 파일명
+fileEx='.json'          # 확장자
 
-#################### id 0 ~ id 258050 까지 ######################
-for fileNo in range(0,369):
+
+for fileNo in range(0,28):
 # for fileNo in range(0,1):
     fullName = fileName + str(fileNo) + fileEx
     
@@ -42,26 +43,24 @@ for fileNo in range(0,369):
     
     # print(data)
 
-    for i in range(0, 700):
+    for i in range(0, 1000):
     # for i in range(0, 2):
         
         try:            
-            time_result = datetime.strptime(data[str(i)]["date"], "%Y.%m.%d").strftime('%Y-%m-%d')
-            
-            # time_result = datetime.strptime(data[str(i)]["date"], '%Y.%m.%d').date()
-            
+            # time_result = datetime.strptime(data[str(i)]["date"], "%Y.%m.%d").strftime('%Y-%m-%d')            
+            time_result = datetime.strptime(data[str(i)]["date"], '%Y-%m-%d %H:%M').date()      # Time제거 date 형식 변환
+            # print(time_result, '...........................')
+
             doc = {
                 "_id": n+1,
                 "title" : data[str(i)]["title"],
                 "Url" : data[str(i)]["Url"],
                 "date" : time_result,
-                "question" : data[str(i)]["question"],
+                "question" : data[str(i)]["title"],
                 "answer" : data[str(i)]["answer"]
                 }
-            # print("doc:", doc)
-            # res = es.index(index="medihook", doc_type="_doc", id=n+1, body=doc)
-            # print(res)
-            
+           
+            print (doc)
             ########### 콜렉션에 도큐먼트 생성 ###############
             posts = db.medihook
             post_id = posts.insert_one(doc).inserted_id
@@ -79,8 +78,8 @@ for fileNo in range(0,369):
         # print(data[str(i)]["date"])
         # print(i,"번째...\n")
         
-    print("ID할당은 : " ,n,"번째 입니다.")
-    
+
+print("최종 ID할당은 : " ,n,"번째 입니다.")
     
 # Collection 리스트 조회
 print(db.list_collection_names(), '\n')

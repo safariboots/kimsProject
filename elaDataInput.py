@@ -9,7 +9,9 @@ es = Elasticsearch('http://211.188.65.224:9200')
 n=0
 fileName='./qnahidoc'
 fileEx='.json'
-
+################################
+# 0~258050까지
+################################
 for fileNo in range(0,369):
 # for fileNo in range(0,2):
     fullName = fileName + str(fileNo) + fileEx
