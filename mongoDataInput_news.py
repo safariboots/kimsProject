@@ -49,7 +49,7 @@ for fileNo in range(0,28):
         try:            
             # time_result = datetime.strptime(data[str(i)]["date"], "%Y.%m.%d").strftime('%Y-%m-%d')            
             time_result = datetime.strptime(data[str(i)]["date"], '%Y-%m-%d %H:%M').date()      # Time제거 date 형식 변환
-            # print(time_result, '...........................')
+            print(time_result, '...........................')
 
             doc = {
                 "_id": n+1,
@@ -59,12 +59,16 @@ for fileNo in range(0,28):
                 "question" : data[str(i)]["title"],
                 "answer" : data[str(i)]["answer"]
                 }
+            
+            for key, value in doc.items():
+                print('key:', key, 'value: ', value)
            
-            print (doc)
+        
+            # print (doc["data"][])
             ########### 콜렉션에 도큐먼트 생성 ###############
-            posts = db.medihook
+            posts = db.medihook            
             post_id = posts.insert_one(doc).inserted_id
-            print('현재 id값은 : ', post_id)
+            print('현재 id값은 : ')
             
             n=n+1
             
