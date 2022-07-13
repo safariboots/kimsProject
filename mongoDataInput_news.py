@@ -27,7 +27,7 @@ colletion = client['medihook']
 
 ######################### Json File Data Input #################
 #################### n초기값 수정 -> id 258051 ~ id 285235 까지 ######################
-n=258051
+n=258050
 fileName='./hidocNews'  # 파일명
 fileEx='.json'          # 확장자
 
@@ -60,8 +60,8 @@ for fileNo in range(0,28):
                 "answer" : data[str(i)]["answer"]
                 }
             
-            for key, value in doc.items():
-                print('key:', key, 'value: ', value)
+            # for key, value in doc.items():
+            #     print('key:', key, 'value: ', value)
            
         
             # print (doc["data"][])
